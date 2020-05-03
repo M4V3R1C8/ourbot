@@ -13,17 +13,17 @@ bot.categories = fs.readdirSync( "./commands/" );
 bot.on( 'ready', () => {
   require( './events/client/ready' )( bot );
 } );
-bot.on( 'message', async message => {
-  // calus
-  var dupea = 0;
-  var dupec = 0;
-  var duped = 0;
-  var dupes = 0;
-  var calla = [ 'c', 'd', 's' ];
-  var callc = [ 'a', 'd', 's' ];
-  var calld = [ 'a', 'c', 's' ];
-  var calls = [ 'a', 'c', 'd' ];
-  var actual = [];
+var dupea = 0;
+var dupec = 0;
+var duped = 0;
+var dupes = 0;
+var calla = [ 'c', 'd', 's' ];
+var callc = [ 'a', 'd', 's' ];
+var calld = [ 'a', 'c', 's' ];
+var calls = [ 'a', 'c', 'd' ];
+var actual = [];
+bot.on( 'message', function ( message ) {
+  // Calus
   if ( message.content.toLowerCase() === "a" && dupea == 0 ) { dupea = "a"; actual.unshift( message.content ); console.log( actual ); }
   if ( message.content.toLowerCase() === "c" && dupec == 0 ) { dupec = "a"; actual.unshift( message.content ); console.log( actual ); }
   if ( message.content.toLowerCase() === "d" && duped == 0 ) { duped = "a"; actual.unshift( message.content ); console.log( actual ); }
