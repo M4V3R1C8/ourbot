@@ -24,10 +24,10 @@ bot.on( 'message', async message => {
   var calld = [ 'a', 'c', 's' ];
   var calls = [ 'a', 'c', 'd' ];
   var actual = [];
-  if ( message.content.toLowerCase() === "a" && dupea == 0 ) { dupea = "a"; actual.unshift( msg.content ); console.log( actual ); }
-  if ( message.content.toLowerCase() === "c" && dupec == 0 ) { dupec = "a"; actual.unshift( msg.content ); console.log( actual ); }
-  if ( message.content.toLowerCase() === "d" && duped == 0 ) { duped = "a"; actual.unshift( msg.content ); console.log( actual ); }
-  if ( message.content.toLowerCase() === "s" && dupes == 0 ) { dupes = "a"; actual.unshift( msg.content ); console.log( actual ); }
+  if ( message.content.toLowerCase() === "a" && dupea == 0 ) { dupea = "a"; actual.unshift( message.content ); console.log( actual ); }
+  if ( message.content.toLowerCase() === "c" && dupec == 0 ) { dupec = "a"; actual.unshift( message.content ); console.log( actual ); }
+  if ( message.content.toLowerCase() === "d" && duped == 0 ) { duped = "a"; actual.unshift( message.content ); console.log( actual ); }
+  if ( message.content.toLowerCase() === "s" && dupes == 0 ) { dupes = "a"; actual.unshift( message.content ); console.log( actual ); }
   actuals = actual.sort();
   if ( actuals.join( '|' ) === calla.join( '|' ) ) { message.channel.send( `Melee Axe! https://imgur.com/agVmO4o ` ).then( actual.length = 0 ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
   if ( actuals.join( '|' ) === callc.join( '|' ) ) { message.channel.send( `Melee Cup! https://imgur.com/0NOS43W ` ).then( actual.length = 0 ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
