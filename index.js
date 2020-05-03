@@ -24,10 +24,10 @@ var calls = [ 'a', 'c', 'd' ];
 var actual = [];
 bot.on( 'message', function ( message ) {
   // Calus
-  if ( message.content.toLowerCase() === "a" && dupea == 0 ) { dupea = "a"; actual.unshift( message.content ); }
-  if ( message.content.toLowerCase() === "c" && dupec == 0 ) { dupec = "c"; actual.unshift( message.content ); }
-  if ( message.content.toLowerCase() === "d" && duped == 0 ) { duped = "d"; actual.unshift( message.content ); }
-  if ( message.content.toLowerCase() === "s" && dupes == 0 ) { dupes = "s"; actual.unshift( message.content ); }
+  if ( message.content.toLowerCase() === "a" && dupea == 0 ) { dupea = "a"; actual.unshift( message.content ); console.log( actual ); }
+  if ( message.content.toLowerCase() === "c" && dupec == 0 ) { dupec = "c"; actual.unshift( message.content ); console.log( actual ); }
+  if ( message.content.toLowerCase() === "d" && duped == 0 ) { duped = "d"; actual.unshift( message.content ); console.log( actual ); }
+  if ( message.content.toLowerCase() === "s" && dupes == 0 ) { dupes = "s"; actual.unshift( message.content ); console.log( actual ); }
   actuals = actual.sort();
   if ( actuals.join( '|' ) === calla.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Axe: back left`, { files: [ "https://i.imgur.com/Y1FLQci.png" ] } ).then( actual.length = 0 ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
   if ( actuals.join( '|' ) === callc.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Cup: front left`, { files: [ "https://i.imgur.com/h8urTrG.png" ] } ).then( actual.length = 0 ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
