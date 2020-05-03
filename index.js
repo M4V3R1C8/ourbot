@@ -19,6 +19,6 @@ bot.on( 'message', async message => {
   message.author; //-- User based
   require( './events/guild/message' )( bot, message );
 } );
-bot.login( token );
+bot.login( process.env.token );
 
 // https://discordapp.com/api/oauth2/authorize?client_id=704022988722274304&permissions=8&scope=bot
