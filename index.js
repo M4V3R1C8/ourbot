@@ -29,10 +29,10 @@ bot.on( 'message', function ( message ) {
   if ( message.content.toLowerCase() === "d" && duped == 0 ) { duped = "d"; actual.unshift( message.content ); console.log( actual ); }
   if ( message.content.toLowerCase() === "s" && dupes == 0 ) { dupes = "s"; actual.unshift( message.content ); console.log( actual ); }
   actuals = actual.sort();
-  if ( actuals.join( '|' ) === calla.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Axe: back left`, { files: [ "https://i.imgur.com/Y1FLQci.png" ] } ).then( actual.length = 0 ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
-  if ( actuals.join( '|' ) === callc.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Cup: front left`, { files: [ "https://i.imgur.com/h8urTrG.png" ] } ).then( actual.length = 0 ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
-  if ( actuals.join( '|' ) === calld.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Dog: back right`, { files: [ "https://i.imgur.com/4J1MWbl.png" ] } ).then( actual.length = 0 ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
-  if ( actuals.join( '|' ) === calls.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Sun: front left`, { files: [ "https://i.imgur.com/Oolzssr.png" ] } ).then( actual.length = 0 ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
+  if ( actuals.join( '|' ) === calla.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Axe: back left`, { files: [ "https://i.imgur.com/Y1FLQci.png" ] } ).then( actual = [] ).then( actuals = [] ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
+  if ( actuals.join( '|' ) === callc.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Cup: front left`, { files: [ "https://i.imgur.com/h8urTrG.png" ] } ).then( actual = [] ).then( actuals = [] ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
+  if ( actuals.join( '|' ) === calld.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Dog: back right`, { files: [ "https://i.imgur.com/4J1MWbl.png" ] } ).then( actual = [] ).then( actuals = [] ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
+  if ( actuals.join( '|' ) === calls.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Sun: front left`, { files: [ "https://i.imgur.com/Oolzssr.png" ] } ).then( actual = [] ).then( actuals = [] ).then( dupea = 0 ).then( dupec = 0 ).then( duped = 0 ).then( dupes = 0 ); }
   // rest of the bot
   message.member; //-- GuildMember based
   message.author; //-- User based
