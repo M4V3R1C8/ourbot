@@ -16,6 +16,6 @@ module.exports = {
     const Embed = new MessageEmbed()
       .setTitle( `${ count } LFG Player(s) have been kicked!!` )
       .setColor( `0x46789d` );
-    message.channel.send( Embed ).then( msg => { msg.delete( { timeout: 2500 } ); } );
+    message.channel.send( Embed ).then( msg => { msg.delete( { timeout: 2500 } ); count = 0; } );
   }
 };
