@@ -22,6 +22,9 @@ var callc = [ 'a', 'd', 's' ];
 var calld = [ 'a', 'c', 's' ];
 var calls = [ 'a', 'c', 'd' ];
 var actual = [];
+bot.on( 'guildMemberAdd', ( guildMember ) => {
+  guildMember.addRole( guildMember.guild.roles.find( role => role.name === "lfg" ) );
+} );
 bot.on( 'message', function ( message ) {
   // Calus
   if ( message.content.toLowerCase() === "a" && dupea == 0 ) { dupea = "a"; actual.unshift( message.content ); }

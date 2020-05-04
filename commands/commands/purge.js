@@ -2,7 +2,7 @@
 module.exports = {
   name: "purge",
   aliases: [ "clear", "nuke" ],
-  description: "Deletes x messages from the chat. You must have the Manage Messages permission to use this command.",
+  description: "Deletes x messages from the chat. Admin only",
   usage: "<x>",
   run: async ( client, message, args ) => {
     if ( message.deletable ) {
