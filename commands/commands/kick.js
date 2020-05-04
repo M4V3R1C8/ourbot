@@ -7,7 +7,7 @@ module.exports = {
   run: async ( bot, message, args ) => {
     var count = 0;
     message.guild.members.cache.forEach( member => {
-      if ( member.roles.some( "lfg" ) ) {
+      if ( member.roles.has( role => role.name === "lfg" ) ) {
         count++;
         member.kick();
       }
