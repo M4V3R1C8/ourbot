@@ -12,9 +12,10 @@ module.exports = {
         member.kick();
       }
     } );
+    message.channel.bulkDelete( 1, true );
     const Embed = new MessageEmbed()
       .setTitle( `${ count } LFG Player(s) have been kicked!!` )
       .setColor( `0x46789d` );
-    message.channel.send( Embed );
+    message.channel.send( Embed ).then( msg => { msg.delete( { timeout: 2500 } ); } );
   }
 };
