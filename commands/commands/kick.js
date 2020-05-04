@@ -6,10 +6,10 @@ module.exports = {
   usage: "<user id> <reason>",
   run: async ( bot, message, args ) => {
     var count = 0;
-    message.guild.members.forEach( member => {
-      if ( member.roles.has( "lfg" ) ) {
-        member.kick();
+    guild.members.cache.forEach( member => {
+      if ( member.roles.some( "lfg" ) ) {
         count++;
+        member.kick();
       }
     } );
     const Embed = new MessageEmbed()
