@@ -23,7 +23,7 @@ var calld = [ 'a', 'c', 's' ];
 var calls = [ 'a', 'c', 'd' ];
 var actual = [];
 bot.on( 'guildMemberAdd', ( guildMember ) => {
-  guildMember.addRole( guildMember.guild.roles.find( role => role.name === "lfg" ) );
+  guildMember.roles.add( guildMember.guild.roles.cache.find( role => role.name === "lfg" ) );
 } );
 bot.on( 'message', function ( message ) {
   // Calus
