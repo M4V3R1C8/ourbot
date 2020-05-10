@@ -3,9 +3,9 @@ const { MessageEmbed } = require( "discord.js" );
 const fs = require( "fs" );
 
 module.exports = {
-  name: "warn",
-  aliases: [ "warn, warning, warns" ],
-  description: "Written warning log to users that violate clan rules. Admin Only",
+  name: "-warn",
+  aliases: [ "removewarn, removewarning" ],
+  description: "Removes a warning from the mentioned user. Admin Only",
   usage: "<user id> <reason>",
   run: async ( bot, message, args ) => {
     let warns = JSON.parse( fs.readFileSync( "./warnings.json" ) );
@@ -20,7 +20,7 @@ module.exports = {
         };
       }
 
-      warns[ wUser.id ].warns++;
+      warns[ wUser.id ].warns--;
       console.log( warns );
 
       fs.writeFile( "./warnings.json", JSON.stringify( warns ), ( err ) => {
@@ -32,7 +32,7 @@ module.exports = {
       let warnEmbed = new MessageEmbed()
         .setDescription( "User Warnings" )
         .setColor( "#fc6400" )
-        .addField( "Warned User", `${ wUser }` )
+        .addField( "Applauded User", `${ wUser }` )
         .addField( "Number of Warnings", warns[ wUser.id ].warns )
         .addField( "Reason", reason );
 
