@@ -114,6 +114,6 @@ bot.on( 'messageReactionRemove', async ( reaction, user ) => {
   }
 } );
 
-bot.login( "NzA0MDIyOTg4NzIyMjc0MzA0.Xq8wBw.r7S3tUSgUjuRt03sSC0pLIVY5WE" );//process.env.token );
+bot.login( process.env.token );//process.env.token );
 
 // https://discordapp.com/api/oauth2/authorize?client_id=704022988722274304&permissions=8&scope=bot
