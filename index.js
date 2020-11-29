@@ -1,7 +1,6 @@
 const Discord = require( "discord.js" );
 const fs = require( "fs" );
 const config = require( './config.json' );
-const data = require( './data.json' );
 const prefix = config.prefix;
 const bot = new Discord.Client( { partials: ["MESSAGE", "CHANNEL", "REACTION"] } );
 bot.prefix = prefix;
