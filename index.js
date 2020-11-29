@@ -1,46 +1,119 @@
 const Discord = require( "discord.js" );
 const fs = require( "fs" );
 const config = require( './config.json' );
+const data = require( './data.json' );
 const prefix = config.prefix;
-const bot = new Discord.Client( { disableMentions: 'everyone' } );
+const bot = new Discord.Client( { partials: ["MESSAGE", "CHANNEL", "REACTION"] } );
 bot.prefix = prefix;
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
+
 bot.categories = fs.readdirSync( "./commands/" );
 [ "command", "server" ].forEach( handler => {
   require( `./handlers/${ handler }` )( bot );
 } );
+
 bot.on( 'ready', () => {
   require( './events/client/ready' )( bot );
 } );
-var dupea = 0;
-var dupec = 0;
-var duped = 0;
-var dupes = 0;
-var calla = [ 'c', 'd', 's' ];
-var callc = [ 'a', 'd', 's' ];
-var calld = [ 'a', 'c', 's' ];
-var calls = [ 'a', 'c', 'd' ];
-var actual = [];
+
 bot.on( 'guildMemberAdd', ( guildMember ) => {
-  guildMember.roles.add( guildMember.guild.roles.cache.find( role => role.name === "lfg" ) );
+  guildMember.roles.add( guildMember.guild.roles.cache.find( role => role.name === "Stardust" ) );
 } );
+
 bot.on( 'message', function ( message ) {
-  // Calus
-  if ( message.content.toLowerCase() === "a" && dupea == 0 ) { dupea = "a"; actual.unshift( message.content ); }
-  if ( message.content.toLowerCase() === "c" && dupec == 0 ) { dupec = "c"; actual.unshift( message.content ); }
-  if ( message.content.toLowerCase() === "d" && duped == 0 ) { duped = "d"; actual.unshift( message.content ); }
-  if ( message.content.toLowerCase() === "s" && dupes == 0 ) { dupes = "s"; actual.unshift( message.content ); }
-  actuals = actual.sort();
-  if ( actuals.join( '|' ) === calla.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Axe: back left`, { files: [ "https://i.imgur.com/Y1FLQci.png" ] } ); actual = []; actuals = []; dupea = 0; dupec = 0; duped = 0; dupes = 0; }
-  if ( actuals.join( '|' ) === callc.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Cup: front left`, { files: [ "https://i.imgur.com/h8urTrG.png" ] } ); actual = []; actuals = []; dupea = 0; dupec = 0; duped = 0; dupes = 0; }
-  if ( actuals.join( '|' ) === calld.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Dog: back right`, { files: [ "https://i.imgur.com/4J1MWbl.png" ] } ); actual = []; actuals = []; dupea = 0; dupec = 0; duped = 0; dupes = 0; }
-  if ( actuals.join( '|' ) === calls.join( '|' ) ) { message.channel.bulkDelete( 3, true ); message.channel.send( `Melee Sun: front left`, { files: [ "https://i.imgur.com/Oolzssr.png" ] } ); actual = []; actuals = []; dupea = 0; dupec = 0; duped = 0; dupes = 0; }
   // rest of the bot
-  message.member; //-- GuildMember based
-  message.author; //-- User based
+  // message.member; //-- GuildMember based
+  // message.author; //-- User based
   require( './events/guild/message' )( bot, message );
 } );
+
+bot.on( 'messageReactionAdd', async ( reaction, user ) => {
+  if (user.bot) return;
+  if(!reaction.guild) return;
+
+  if(reaction.message.channel.id === "781282193396989994") {
+    if(reaction.emoji.name === '1️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("781284379874820096");
+    }
+    if(reaction.emoji.name === '2️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("782682124234653727");
+    }
+    if(reaction.emoji.name === '3️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("782682328836603954");
+    }
+    if(reaction.emoji.name === '4️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("782682253670481940");
+    }
+    if(reaction.emoji.name === '5️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("781288186709147668");
+    }
+    if(reaction.emoji.name === '6️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("781288186709147668");
+    }
+    if(reaction.emoji.name === '7️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("781290350567882752");
+    }
+    if(reaction.emoji.name === '8️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("781293406277861388");
+    }
+    if(reaction.emoji.name === '9️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("782682775048159252");
+    }
+    if(reaction.emoji.name === '🔟') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("782682919227097101");
+    }
+  } else if(reaction.message.channel.id === "781282193396989994") {
+    if(reaction.emoji.name === '✅') {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("706949672496922705");
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("781565994128113694");
+    }
+  }
+} );
+
+bot.on( 'messageReactionRemove', async ( reaction, user ) => {
+  if (user.bot) return;
+  if(!reaction.guild) return;
+  
+  if(reaction.message.channel.id === "781282193396989994") {
+    if(reaction.emoji.name === '1️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("781284379874820096");
+    }
+    if(reaction.emoji.name === '2️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("782682124234653727");
+    }
+    if(reaction.emoji.name === '3️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("782682328836603954");
+    }
+    if(reaction.emoji.name === '4️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("782682253670481940");
+    }
+    if(reaction.emoji.name === '5️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("781288186709147668");
+    }
+    if(reaction.emoji.name === '6️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("781288186709147668");
+    }
+    if(reaction.emoji.name === '7️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("781290350567882752");
+    }
+    if(reaction.emoji.name === '8️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("781293406277861388");
+    }
+    if(reaction.emoji.name === '9️⃣') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("782682775048159252");
+    }
+    if(reaction.emoji.name === '🔟') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("782682919227097101");
+    }
+  } else if(reaction.message.channel.id === "781282193396989994") {
+    if(reaction.emoji.name === '✅') {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("706949672496922705");
+      await reaction.message.guild.members.cache.get(user.id).roles.add("781565994128113694");
+    }
+  }
+} );
+
 bot.login( "NzA0MDIyOTg4NzIyMjc0MzA0.Xq8wBw.r7S3tUSgUjuRt03sSC0pLIVY5WE" );//process.env.token );
 
 // https://discordapp.com/api/oauth2/authorize?client_id=704022988722274304&permissions=8&scope=bot

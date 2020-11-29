@@ -24,13 +24,5 @@ module.exports = {
     await msg.react( "8️⃣" );
     await msg.react( "9️⃣" );
     await msg.react( "🔟" );
-    msg.react( "❌" );
-    bot.on( "messageReactionAdd", ( messageReaction, user, message ) => {
-      if ( messageReaction == "❌" ) {
-        if ( user == author ) {
-          message.delete( { timeout: 500 } );
-        }
-      }
-    } );
   }
 };
