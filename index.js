@@ -1,6 +1,8 @@
 const Discord = require( "discord.js" );
 const fs = require( "fs" );
 const config = require( './config.json' );
+const roleClaim = require( './role-claim.js' );
+const verify = require( './verify.js' );
 const prefix = config.prefix;
 const bot = new Discord.Client( { partials: ["MESSAGE", "CHANNEL", "REACTION"] } );
 bot.prefix = prefix;
@@ -14,137 +16,49 @@ bot.categories = fs.readdirSync( "./commands/" );
 
 bot.on( 'ready', () => {
   require( './events/client/ready' )( bot );
+  roleClaim(bot);
+  verify(bot);
 } );
 
 bot.on( 'guildMemberAdd', ( guildMember ) => {
   guildMember.roles.add( guildMember.guild.roles.cache.find( role => role.name === "Stardust" ) );
+  const channel = member.guild.channels.cache.find(ch => ch.name === 'member-log');
+	if (!channel) return;
+
+	const canvas = Canvas.createCanvas(700, 250);
+	const ctx = canvas.getContext('2d');
+
+	const background = await Canvas.loadImage('./wallpaper.jpg');
+	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+	ctx.strokeStyle = '#74037b';
+	ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+	// Slightly smaller text placed above the member's display name
+	ctx.font = '28px sans-serif';
+	ctx.fillStyle = '#ffffff';
+	ctx.fillText('Welcome to the server,', canvas.width / 2.5, canvas.height / 3.5);
+
+	// Add an exclamation point here and below
+	ctx.font = applyText(canvas, `${member.displayName}!`);
+	ctx.fillStyle = '#ffffff';
+	ctx.fillText(`${member.displayName}!`, canvas.width / 2.5, canvas.height / 1.8);
+
+	ctx.beginPath();
+	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+	ctx.closePath();
+	ctx.clip();
+
+	const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'jpg' }));
+	ctx.drawImage(avatar, 25, 25, 200, 200);
+
+	const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
+
+	channel.send(`Welcome to the server, ${member}!`, attachment);
 } );
 
-bot.on( 'message', function ( message ) {
-  // rest of the bot
-  // message.member; //-- GuildMember based
-  // message.author; //-- User based
+bot.on( 'message', ( message ) => {
   require( './events/guild/message' )( bot, message );
-} );
-
-bot.on( 'messageReactionAdd', async ( reaction, user ) => {
-  if (user.bot) return;
-  if(!reaction.guild) return;
-
-  if(reaction.message.channel.id == "781282193396989994") {
-    if(reaction.emoji.name == '1️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('781284379874820096');
-      });
-    }
-    if(reaction.emoji.name == '2️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('782682124234653727');
-      });
-    }
-    if(reaction.emoji.name == '3️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('782682328836603954');
-      });
-    }
-    if(reaction.emoji.name == '4️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('782682253670481940');
-      });
-    }
-    if(reaction.emoji.name == '5️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('781288186709147668');
-      });
-    }
-    if(reaction.emoji.name == '6️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('781290350567882752');
-      });
-    }
-    if(reaction.emoji.name == '7️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('781293406277861388');
-      });
-    }
-    if(reaction.emoji.name == '8️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('782682775048159252');
-      });
-    }
-    if(reaction.emoji.name == '9️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('782682919227097101');
-      });
-    }
-  } else if(reaction.message.channel.id == "724433408293601429") {
-    if(reaction.emoji.name == '✅') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('706949672496922705');
-        member.removeRole('781565994128113694');
-      });
-    }
-  }
-} );
-
-bot.on( 'messageReactionRemove', async ( reaction, user ) => {
-  if (user.bot) return;
-  if(!reaction.guild) return;
-  
-  if(reaction.message.channel.id == "781282193396989994") {
-    if(reaction.emoji.name == '1️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.removeRole('781284379874820096');
-      });
-    }
-    if(reaction.emoji.name == '2️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.removeRole('782682124234653727');
-      });
-    }
-    if(reaction.emoji.name == '3️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.removeRole('782682328836603954');
-      });
-    }
-    if(reaction.emoji.name == '4️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.removeRole('782682253670481940');
-      });
-    }
-    if(reaction.emoji.name == '5️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.removeRole('781288186709147668');
-      });
-    }
-    if(reaction.emoji.name == '6️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.removeRole('781290350567882752');
-      });
-    }
-    if(reaction.emoji.name == '7️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.removeRole('781293406277861388');
-      });
-    }
-    if(reaction.emoji.name == '8️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.removeRole('782682775048159252');
-      });
-    }
-    if(reaction.emoji.name == '9️⃣') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.removeRole('782682919227097101');
-      });
-    }
-  } else if(reaction.message.channel.id == "724433408293601429") {
-    if(reaction.emoji.name == '✅') {
-      await reaction.message.guild.fetchMember(user.id).then(member => {
-        member.addRole('781565994128113694');
-        member.removeRole('706949672496922705');
-      });
-    }
-  }
 } );
 
 bot.login( process.env.token );//process.env.token );
