@@ -3,7 +3,8 @@ const firstMessage = require('./first-message')
 module.exports = (bot) => {
   const channelId = '781282193396989994'
 
-  const getEmoji = emojiName => bot.emojis.cache.find((emoji) => emoji.name === emojiName)
+  const getEmoji = (emojiName) =>
+    bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
     one: 'raiders',
