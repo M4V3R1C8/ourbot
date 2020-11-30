@@ -7,22 +7,22 @@ module.exports = (bot) => {
     bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
-    one: 'raiders',
-    two: 'dscfarm',
-    three: 'gosfarm',
-    four: 'lwfarm',
-    five: 'strikes',
-    six: 'crucible',
-    seven: 'gambit',
-    eight: 'dungeons',
-    nine: 'seasonal',
+    keycap_digit_one: 'raiders',
+    keycap_digit_two: 'dscfarm',
+    keycap_digit_three: 'gosfarm',
+    keycap_digit_four: 'lwfarm',
+    keycap_digit_five: 'strikes',
+    keycap_digit_six: 'crucible',
+    keycap_digit_seven: 'gambit',
+    keycap_digit_eight: 'dungeons',
+    keycap_digit_nine: 'seasonal',
   }
 
   const reactions = []
 
-  let emojiText = '**React below to assign your roles.:**\n\n'
+  let emojiText = '**React below to assign your roles:**\n\n'
   for (const key in emojis) {
-    const emoji = `:${getEmoji(key)}:`
+    const emoji = ${getEmoji(key)}
     reactions.push(emoji)
 
     const role = emojis[key]
