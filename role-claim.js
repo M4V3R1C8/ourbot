@@ -6,10 +6,10 @@ module.exports = (bot) => {
   const getEmoji = emojiName => bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
-    one: 'raiders',
-    two: 'dscfarm',
-    three: 'gosfarm',
-    four: 'lwfarm',
+    100: 'raiders',
+    eyes: 'dscfarm',
+    weary: 'gosfarm',
+    'four': 'lwfarm',
     five: 'strikes',
     six: 'crucible',
     seven: 'gambit',
@@ -32,7 +32,7 @@ module.exports = (bot) => {
   firstMessage(bot, channelId, emojiText, reactions)
 
   const handleReaction = (reaction, user, add) => {
-    if(user.bot) return
+    if(user.id === '704022988722274304') return
     const emoji = reaction._emoji.name
     const { guild } = reaction.message
     const roleName = emojis[emoji]

@@ -23,6 +23,7 @@ module.exports = (bot) => {
   firstMessage(bot, channelId, emojiText, reactions)
 
   const handleReaction = (reaction, user, add) => {
+    if(user.id === '704022988722274304') return
     const emoji = reaction._emoji.name
     const { guild } = reaction.message
 
