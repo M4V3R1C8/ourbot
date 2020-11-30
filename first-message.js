@@ -7,7 +7,7 @@ const addReactions = (message, reactions) => {
   }
   if (reacting.toString().includes(':')) {
     const split0 = reacting.toString().replace(':', '')
-    const split1 = reacting.toString().replace(':', '')
+    const split1 = split0.replace(':', '')
     const emojiName = split1
     reacting = message.guild.emojis.cache.find((emoji) => {
       return emojiName === emoji.name
@@ -28,11 +28,13 @@ module.exports = async (bot, id, text, reactions = []) => {
     if (messages.size === 0) {
       // Send a new message
       channel.send(text).then((message) => {
+        console.log(reactions)
         addReactions(message, reactions)
       })
     } else {
       // Edit the existing message
       for (const message of messages) {
+        console.log(reactions)
         message[1].edit(text)
         addReactions(message[1], reactions)
       }
