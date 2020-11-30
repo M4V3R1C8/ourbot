@@ -33,36 +33,56 @@ bot.on( 'messageReactionAdd', async ( reaction, user ) => {
 
   if(reaction.message.channel.id === "781282193396989994") {
     if(reaction.emoji.name === '1️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("781284379874820096");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('781284379874820096');
+      });
     }
     if(reaction.emoji.name === '2️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("782682124234653727");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('782682124234653727');
+      });
     }
     if(reaction.emoji.name === '3️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("782682328836603954");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('782682328836603954');
+      });
     }
     if(reaction.emoji.name === '4️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("782682253670481940");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('782682253670481940');
+      });
     }
     if(reaction.emoji.name === '5️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("781288186709147668");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('781288186709147668');
+      });
     }
     if(reaction.emoji.name === '6️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("781290350567882752");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('781290350567882752');
+      });
     }
     if(reaction.emoji.name === '7️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("781293406277861388");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('781293406277861388');
+      });
     }
     if(reaction.emoji.name === '8️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("782682775048159252");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('782682775048159252');
+      });
     }
     if(reaction.emoji.name === '9️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("782682919227097101");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('782682919227097101');
+      });
     }
-  } else if(reaction.message.channel.id === "781282193396989994") {
+  } else if(reaction.message.channel.id === "724433408293601429") {
     if(reaction.emoji.name === '✅') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("706949672496922705");
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("781565994128113694");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('706949672496922705');
+        member.removeRole('781565994128113694');
+      });
     }
   }
 } );
@@ -73,36 +93,56 @@ bot.on( 'messageReactionRemove', async ( reaction, user ) => {
   
   if(reaction.message.channel.id === "781282193396989994") {
     if(reaction.emoji.name === '1️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("781284379874820096");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.removeRole('781284379874820096');
+      });
     }
     if(reaction.emoji.name === '2️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("782682124234653727");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.removeRole('782682124234653727');
+      });
     }
     if(reaction.emoji.name === '3️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("782682328836603954");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.removeRole('782682328836603954');
+      });
     }
     if(reaction.emoji.name === '4️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("782682253670481940");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.removeRole('782682253670481940');
+      });
     }
     if(reaction.emoji.name === '5️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("781288186709147668");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.removeRole('781288186709147668');
+      });
     }
     if(reaction.emoji.name === '6️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("781290350567882752");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.removeRole('781290350567882752');
+      });
     }
     if(reaction.emoji.name === '7️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("781293406277861388");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.removeRole('781293406277861388');
+      });
     }
     if(reaction.emoji.name === '8️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("782682775048159252");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.removeRole('782682775048159252');
+      });
     }
     if(reaction.emoji.name === '9️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("782682919227097101");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.removeRole('782682919227097101');
+      });
     }
-  } else if(reaction.message.channel.id === "781282193396989994") {
+  } else if(reaction.message.channel.id === "724433408293601429") {
     if(reaction.emoji.name === '✅') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("706949672496922705");
-      await reaction.message.guild.members.cache.get(user.id).roles.add("781565994128113694");
+      await reaction.message.guild.fetchMember(user.id).then(member => {
+        member.addRole('781565994128113694');
+        member.removeRole('706949672496922705');
+      });
     }
   }
 } );
