@@ -1,3 +1,5 @@
+const firstMessage = require( './firstMessage.js' );
+
 module.exports = (bot) => {
   const channelId = '724433408293601429'
 
