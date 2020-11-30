@@ -1,4 +1,4 @@
-const firstMessage = require( './firstMessage.js' );
+const firstMessage = require('./first-message')
 
 module.exports = (bot) => {
   const channelId = '781282193396989994'
@@ -16,14 +16,13 @@ module.exports = (bot) => {
     seven: 'gambit',
     eight: 'dungeons',
     nine: 'seasonal',
-    white_check_mark: 'Abnormalities'
   }
 
   const reactions = []
 
   let emojiText = '**React below to assign your roles.:**\n\n'
   for (const key in emojis) {
-    const emoji = getEmoji(key)
+    const emoji = `:${getEmoji(key)}:`
     reactions.push(emoji)
 
     const role = emojis[key]
