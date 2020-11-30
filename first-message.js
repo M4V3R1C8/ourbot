@@ -6,9 +6,10 @@ const addReactions = (message, reactions) => {
     reacting = reacting.substring(0, -1);
   }
   if (reacting.toString().includes(':')) {
-    const split = reacting.toString().split(':')
-    const emojiName = split[1]
-    reacting = message.emojis.cache.find((emoji) => {
+    const split0 = reacting.toString().replace(':', '')
+    const split1 = reacting.toString().replace(':', '')
+    const emojiName = split1
+    reacting = message.guild.emojis.cache.find((emoji) => {
       return emojiName === emoji.name
     });
   }
