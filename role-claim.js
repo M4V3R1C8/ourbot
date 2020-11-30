@@ -22,6 +22,7 @@ module.exports = (bot) => {
 
   let emojiText = '**React below to claim your roles:**\n\n'
   for (const key in emojis) {
+    console.log(key)
     const emoji = getEmoji(key)
     console.log(emoji)
     reactions.push(emoji)
