@@ -48,18 +48,15 @@ bot.on( 'messageReactionAdd', async ( reaction, user ) => {
       await reaction.message.guild.members.cache.get(user.id).roles.add("781288186709147668");
     }
     if(reaction.emoji.name === '6️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.add("781288186709147668");
-    }
-    if(reaction.emoji.name === '7️⃣') {
       await reaction.message.guild.members.cache.get(user.id).roles.add("781290350567882752");
     }
-    if(reaction.emoji.name === '8️⃣') {
+    if(reaction.emoji.name === '7️⃣') {
       await reaction.message.guild.members.cache.get(user.id).roles.add("781293406277861388");
     }
-    if(reaction.emoji.name === '9️⃣') {
+    if(reaction.emoji.name === '8️⃣') {
       await reaction.message.guild.members.cache.get(user.id).roles.add("782682775048159252");
     }
-    if(reaction.emoji.name === '🔟') {
+    if(reaction.emoji.name === '9️⃣') {
       await reaction.message.guild.members.cache.get(user.id).roles.add("782682919227097101");
     }
   } else if(reaction.message.channel.id === "781282193396989994") {
@@ -91,18 +88,15 @@ bot.on( 'messageReactionRemove', async ( reaction, user ) => {
       await reaction.message.guild.members.cache.get(user.id).roles.remove("781288186709147668");
     }
     if(reaction.emoji.name === '6️⃣') {
-      await reaction.message.guild.members.cache.get(user.id).roles.remove("781288186709147668");
-    }
-    if(reaction.emoji.name === '7️⃣') {
       await reaction.message.guild.members.cache.get(user.id).roles.remove("781290350567882752");
     }
-    if(reaction.emoji.name === '8️⃣') {
+    if(reaction.emoji.name === '7️⃣') {
       await reaction.message.guild.members.cache.get(user.id).roles.remove("781293406277861388");
     }
-    if(reaction.emoji.name === '9️⃣') {
+    if(reaction.emoji.name === '8️⃣') {
       await reaction.message.guild.members.cache.get(user.id).roles.remove("782682775048159252");
     }
-    if(reaction.emoji.name === '🔟') {
+    if(reaction.emoji.name === '9️⃣') {
       await reaction.message.guild.members.cache.get(user.id).roles.remove("782682919227097101");
     }
   } else if(reaction.message.channel.id === "781282193396989994") {
