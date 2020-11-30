@@ -12,6 +12,7 @@ const addReactions = (message, reactions) => {
     const split0 = reacting.toString().replace(':', '')
     const split1 = split0.replace(':', '')
     const emojiName = split1
+    console.log(emojiName)
     reacting = message.guild.emojis.cache.find((emoji) => {
       return emojiName === emoji.name
     });
