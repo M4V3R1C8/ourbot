@@ -1,9 +1,12 @@
 const reaction = require( './commands/commands/reaction' );
 
 const addReactions = (message, reactions) => {
+  console.log(reactions[0])
   var reacting = reactions[0]
+  console.log(reacting)
   if (reacting.toString().includes(">")) {
     reacting = reacting.substring(0, -1);
+    console.log(reacting)
   }
   if (reacting.toString().includes(':')) {
     const split0 = reacting.toString().replace(':', '')
@@ -12,6 +15,7 @@ const addReactions = (message, reactions) => {
     reacting = message.guild.emojis.cache.find((emoji) => {
       return emojiName === emoji.name
     });
+    console.log(reacting)
   }
   console.log(reacting)
   message.react(reacting)
@@ -28,13 +32,11 @@ module.exports = async (bot, id, text, reactions = []) => {
     if (messages.size === 0) {
       // Send a new message
       channel.send(text).then((message) => {
-        console.log(reactions)
         addReactions(message, reactions)
       })
     } else {
       // Edit the existing message
       for (const message of messages) {
-        console.log(reactions)
         message[1].edit(text)
         addReactions(message[1], reactions)
       }
