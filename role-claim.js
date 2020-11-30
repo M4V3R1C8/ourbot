@@ -6,7 +6,7 @@ module.exports = (bot) => {
   const getEmoji = emojiName => bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
-    ':one:': 'raiders',
+    one: 'raiders',
     two: 'dscfarm',
     three: 'gosfarm',
     four: 'lwfarm',

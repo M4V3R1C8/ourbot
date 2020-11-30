@@ -7,7 +7,7 @@ module.exports = (bot) => {
     bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
-    ':white_check_mark:': 'Abnormalities'
+    white_check_mark: 'Abnormalities'
   }
 
   const reactions = []
@@ -27,11 +27,11 @@ module.exports = (bot) => {
     const { guild } = reaction.message
     const member = guild.members.cache.find((member) => member.id === user.id)
     if (add) {
-      member.roles.add( guildMember.guild.roles.cache.find( role => role.name === "Abnormalities" ) );
-      member.roles.remove( guildMember.guild.roles.cache.find( role => role.name === "Stardust" ) );
+      member.roles.add( reaction.message.guild.roles.cache.find( role => role.name === "Abnormalities" ) );
+      member.roles.remove( reaction.message.guild.roles.cache.find( role => role.name === "Stardust" ) );
     } else {
-      member.roles.remove( guildMember.guild.roles.cache.find( role => role.name === "Abnormalities" ) );
-      member.roles.add( guildMember.guild.roles.cache.find( role => role.name === "Stardust" ) );
+      member.roles.remove( reaction.message.guild.roles.cache.find( role => role.name === "Abnormalities" ) );
+      member.roles.add( reaction.message.guild.roles.cache.find( role => role.name === "Stardust" ) );
     }
   }
 

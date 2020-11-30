@@ -1,6 +1,14 @@
 const addReactions = (message, reactions) => {
-  message.react(reactions[0])
-  console.log(reactions[0]);
+  reaction = reactions[0]
+  if (reaction.toString().includes(':')) {
+    const split = reaction.toString().split(':')
+    const emojiName = split[1]
+    reaction = message.emojis.cache.find((emoji) => {
+      return emojiName === emoji.name
+    });
+  }
+  message.react(reaction)
+  console.log(reaction)
   reactions.shift()
   if (reactions.length > 0) {
     setTimeout(() => addReactions(message, reactions), 750)
