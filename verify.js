@@ -7,7 +7,7 @@ module.exports = (bot) => {
     bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
-    white_check_mark: 'Abnormalities'
+    ':white_check_mark:': 'Abnormalities'
   }
 
   const reactions = []

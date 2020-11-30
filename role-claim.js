@@ -6,7 +6,7 @@ module.exports = (bot) => {
   const getEmoji = emojiName => bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
-    one: 'raiders',
+    ':one:': 'raiders',
     two: 'dscfarm',
     three: 'gosfarm',
     four: 'lwfarm',
@@ -23,6 +23,7 @@ module.exports = (bot) => {
   let emojiText = '**React below to claim your roles:**\n\n'
   for (const key in emojis) {
     const emoji = getEmoji(key)
+    console.log(emoji)
     reactions.push(emoji)
 
     const role = emojis[key]
