@@ -3,24 +3,24 @@ const firstMessage = require('./first-message')
 module.exports = (bot) => {
   const channelId = '781282193396989994'
 
-  const getEmoji = (emojiName) =>
-    bot.emojis.cache.find((emoji) => emoji.name === emojiName)
+  const getEmoji = emojiName => bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
-    keycap_digit_one: 'raiders',
-    keycap_digit_two: 'dscfarm',
-    keycap_digit_three: 'gosfarm',
-    keycap_digit_four: 'lwfarm',
-    keycap_digit_five: 'strikes',
-    keycap_digit_six: 'crucible',
-    keycap_digit_seven: 'gambit',
-    keycap_digit_eight: 'dungeons',
-    keycap_digit_nine: 'seasonal',
+    one: 'raiders',
+    two: 'dscfarm',
+    three: 'gosfarm',
+    four: 'lwfarm',
+    five: 'strikes',
+    six: 'crucible',
+    seven: 'gambit',
+    eight: 'dungeons',
+    nine: 'seasonal',
+    white_check_mark: 'Abnormalities',
   }
 
   const reactions = []
 
-  let emojiText = '**React below to assign your roles:**\n\n'
+  let emojiText = '**React below to claim your roles:**\n\n'
   for (const key in emojis) {
     const emoji = getEmoji(key)
     reactions.push(emoji)
@@ -32,6 +32,7 @@ module.exports = (bot) => {
   firstMessage(bot, channelId, emojiText, reactions)
 
   const handleReaction = (reaction, user, add) => {
+    if(user.bot) return
     const emoji = reaction._emoji.name
     const { guild } = reaction.message
     const roleName = emojis[emoji]

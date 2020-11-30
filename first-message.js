@@ -1,5 +1,6 @@
 const addReactions = (message, reactions) => {
-  message.react(reactions[0])
+  var reaction = reactions[0].toString;
+  message.react(reaction)
   reactions.shift()
   if (reactions.length > 0) {
     setTimeout(() => addReactions(message, reactions), 750)
