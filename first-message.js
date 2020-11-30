@@ -1,19 +1,19 @@
 const reaction = require( './commands/commands/reaction' );
 
 const addReactions = (message, reactions) => {
-  reaction = reactions[0]
-  if (reaction.toString().includes(">")) {
-    reaction = reaction.substring(0, -1);
+  var reacting = reactions[0]
+  if (reacting.toString().includes(">")) {
+    reacting = reacting.substring(0, -1);
   }
-  if (reaction.toString().includes(':')) {
-    const split = reaction.toString().split(':')
+  if (reacting.toString().includes(':')) {
+    const split = reacting.toString().split(':')
     const emojiName = split[1]
-    reaction = message.emojis.cache.find((emoji) => {
+    reacting = message.emojis.cache.find((emoji) => {
       return emojiName === emoji.name
     });
   }
-  console.log(reaction)
-  message.react(reaction)
+  console.log(reacting)
+  message.react(reacting)
   reactions.shift()
   if (reactions.length > 0) {
     setTimeout(() => addReactions(message, reactions), 750)
