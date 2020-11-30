@@ -7,29 +7,25 @@ module.exports = (bot) => {
     bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
-    one: 'raiders',
-    two: 'dscfarm',
-    three: 'gosfarm',
-    four: 'lwfarm',
-    five: 'strikes',
-    six: 'crucible',
-    seven: 'gambit',
-    eight: 'dungeons',
-    nine: 'seasonal',
-    white_check_mark: 'Abnormalities',
+    ':one:': 'raiders',
+    ':two:': 'dscfarm',
+    ':three:': 'gosfarm',
+    ':four:': 'lwfarm',
+    ':five:': 'strikes',
+    ':six:': 'crucible',
+    ':seven:': 'gambit',
+    ':eight:': 'dungeons',
+    ':nine:': 'seasonal',
   }
 
   const reactions = []
 
   let emojiText = '**React below to claim your roles:**\n\n'
   for (const key in emojis) {
-    console.log(key)
-    const emoji = getEmoji(key)
-    console.log(emoji)
-    reactions.push(emoji)
+    reactions.push(key)
 
     const role = emojis[key]
-    emojiText += `${emoji} = ${role}\n`
+    emojiText += `${key} = ${role}\n`
   }
 
   firstMessage(bot, channelId, emojiText, reactions)
@@ -42,7 +38,7 @@ module.exports = (bot) => {
     if (!roleName) {
       return
     }
-    const role = guild.roles.cache.find((role) => role.name === roleName)
+    const role = guild.roles.cache.find((role) => `:${role.name}:` === roleName)
     const member = guild.members.cache.find((member) => member.id === user.id)
     if (add) {
       member.roles.add(role)

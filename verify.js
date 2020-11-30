@@ -7,17 +7,16 @@ module.exports = (bot) => {
     bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
-    white_check_mark: 'Abnormalities'
+    ':white_check_mark:': 'Abnormalities',
   }
 
   const reactions = []
 
   let emojiText = '**Please react with :white_check_mark: to agree to the rules above and to gain access to the rest of this server:**\n\n'
   for (const key in emojis) {
-    const emoji = getEmoji(key)
-    reactions.push(emoji)
+    reactions.push(key)
 
-    emojiText += `${emoji} = required to join voice channels\n`
+    emojiText += `:${key}: = required to join voice channels\n`
   }
 
   firstMessage(bot, channelId, emojiText, reactions)
@@ -27,11 +26,11 @@ module.exports = (bot) => {
     const { guild } = reaction.message
     const member = guild.members.cache.find((member) => member.id === user.id)
     if (add) {
-      member.roles.add( reaction.message.guild.roles.cache.find( role => role.name === "Abnormalities" ) );
-      member.roles.remove( reaction.message.guild.roles.cache.find( role => role.name === "Stardust" ) );
+      member.roles.add( reaction.message.guild.roles.cache.find( role => role.name == "Abnormalities" ) );
+      member.roles.remove( reaction.message.guild.roles.cache.find( role => role.name == "Stardust" ) );
     } else {
-      member.roles.remove( reaction.message.guild.roles.cache.find( role => role.name === "Abnormalities" ) );
-      member.roles.add( reaction.message.guild.roles.cache.find( role => role.name === "Stardust" ) );
+      member.roles.remove( reaction.message.guild.roles.cache.find( role => role.name == "Abnormalities" ) );
+      member.roles.add( reaction.message.guild.roles.cache.find( role => role.name == "Stardust" ) );
     }
   }
 
