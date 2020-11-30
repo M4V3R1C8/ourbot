@@ -1,5 +1,4 @@
 const Discord = require( 'discord.js' );
-const data = require( './data.json' );
 module.exports = {
   name: "verify",
   description: "Mod feature, don't worry about it",
