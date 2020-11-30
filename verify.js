@@ -24,16 +24,14 @@ module.exports = (bot) => {
 
   const handleReaction = (reaction, user, add) => {
     if(user.id === '704022988722274304') return
-    const emoji = reaction._emoji.name
     const { guild } = reaction.message
-
     const member = guild.members.cache.find((member) => member.id === user.id)
     if (add) {
-      member.roles.add('Abnormalities')
-      member.roles.remove('Stardust')
+      member.roles.add( guildMember.guild.roles.cache.find( role => role.name === "Abnormalities" ) );
+      member.roles.remove( guildMember.guild.roles.cache.find( role => role.name === "Stardust" ) );
     } else {
-      member.roles.add('Stardust')
-      member.roles.remove('Abnormalities')
+      member.roles.remove( guildMember.guild.roles.cache.find( role => role.name === "Abnormalities" ) );
+      member.roles.add( guildMember.guild.roles.cache.find( role => role.name === "Stardust" ) );
     }
   }
 

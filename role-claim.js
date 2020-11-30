@@ -6,10 +6,10 @@ module.exports = (bot) => {
   const getEmoji = emojiName => bot.emojis.cache.find((emoji) => emoji.name === emojiName)
 
   const emojis = {
-    100: 'raiders',
-    eyes: 'dscfarm',
-    weary: 'gosfarm',
-    'four': 'lwfarm',
+    one: 'raiders',
+    two: 'dscfarm',
+    three: 'gosfarm',
+    four: 'lwfarm',
     five: 'strikes',
     six: 'crucible',
     seven: 'gambit',
