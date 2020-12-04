@@ -16,7 +16,7 @@ module.exports = (bot) => {
   }
 
   firstMessage(bot, channelId, emojiText, reactions)
-  bot.channel.messages.cache.get(channelId);
+  channel.messages.cache.get(channelId);
 
   const handleReaction = (reaction, user, add) => {
     if(reaction.message.channel.id === channelId) {
