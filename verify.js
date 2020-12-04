@@ -20,33 +20,34 @@ module.exports = (bot) => {
   firstMessage(bot, channelId, emojiText, reactions)
 
   const handleReaction = (reaction, user, add) => {
-    console.log(reaction);
-    console.log(reaction._emoji);
-    console.log(reaction._emoji.name);
-    console.log(reaction.message.channel.id);
     if(reaction.message.channel.id !== channelId) return
     if(user.id === '704022988722274304') return
-    const emoji = reaction._emoji.name
     const { guild } = reaction.message
+    const emoji = reaction._emoji.name
     const roleName = emojis[emoji]
-    console.log(roleName);
     if (!roleName) {
       return
     }
     const role = guild.roles.find((role) => `${role.name}` === roleName)
-    const role2 = guild.roles.find((role) => `Stardust` === roleName)
+    const role2 = guild.roles.find((role2) => `Stardust` === roleName)
     const member = guild.members.cache.find((member) => member.id === user.id)
     if (add) {
-      console.log(`Adding role: ${role}`);
+      console.log(`Adding role: ${role}, removing role: ${role2}`);
       member.roles.cache.add(role)
       member.roles.cache.remove(role2);
     } else {
-      console.log(`Removing role: ${role}`);
+      console.log(`Removing role: ${role}, adding role: ${role2}`);
       member.roles.cache.remove(role)
       member.roles.cache.add(role2);
     }
   }
 
-  bot.on('messageReactionAdd', (reaction, user) => { handleReaction(reaction, user, true) })
-  bot.on('messageReactionRemove', (reaction, user) => { handleReaction(reaction, user, false) })
+  bot.on('messageReactionAdd', (reaction, user) => { 
+    handleReaction(reaction, user, true) 
+    console.log(`messageReactionAdded`);
+  })
+  bot.on('messageReactionRemove', (reaction, user) => { 
+    handleReaction(reaction, user, false) 
+    console.log(`messageReactionRemoved`);
+  })
 }
