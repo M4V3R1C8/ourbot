@@ -17,7 +17,6 @@ module.exports = (bot) => {
   }
 
   firstMessage(bot, channelId, emojiText, reactions)
-  let channelMessages = bot.channels.cache.get(channelId).messages.fetch(msgId);
 
   const handleReaction = (reaction, user, add) => {
     if(reaction.message.channel.id === channelId) {
@@ -41,11 +40,11 @@ module.exports = (bot) => {
     }
   }
 
-  channelMessages.on('messageReactionAdd', (reaction, user) => {
+  bot.channels.cache.get(channelId).messages.fetch(msgId).on('messageReactionAdd', (reaction, user) => {
     console.log(`${user.tag} added ${reaction.emoji.name} to message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
     //handleReaction(reaction, user, true) 
   })
-  channelMessages.on('messageReactionRemove', (reaction, user) => { 
+  bot.channels.cache.get(channelId).messages.fetch(msgId).on('messageReactionRemove', (reaction, user) => { 
     console.log(`${user.tag} removed ${reaction.emoji.name} on message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
     //handleReaction(reaction, user, false) 
   })
