@@ -1,5 +1,3 @@
-const reaction = require( './commands/commands/reaction' );
-
 const addReactions = (message, reactions) => {
   console.log(reactions[0])
   var reacting = reactions[0]
