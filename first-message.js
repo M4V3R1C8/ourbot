@@ -1,23 +1,18 @@
 const addReactions = (message, reactions) => {
   console.log(reactions[0])
   var reacting = reactions[0]
-  console.log(reacting)
   if (reacting.includes(">")) {
     reacting = reacting.substring(0, -1);
-    console.log(reacting)
   }
   if (reacting.includes(':')) {
     const split0 = reacting.replace(':', '')
     const split1 = split0.replace(':', '')
     const emojiName = split1
-    console.log(emojiName)
     reacting = message.guild.emojis.cache.find((emoji) => {
       return emojiName === emoji.name
     });
-    console.log(reacting)
   }
   
-  console.log(reacting)
   message.react(reacting)
   reactions.shift()
   if (reactions.length > 0) {

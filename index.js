@@ -29,9 +29,9 @@ bot.on( 'message', ( message ) => {
   require( './events/guild/message' )( bot, message );
 } );
 
-bot.on( 'messageReactionAdd', (reaction, user) => {
+bot.on('messageReactionAdd', (reaction, users) => {
   console.log(`${user.tag} added ${reaction.emoji.name} to message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
-  handleReaction(bot, reaction, user, true) 
+  handleReaction(bot, reaction, users, true) 
 })
 bot.on( 'messageReactionRemove', (reaction, user) => { 
   console.log(`${user.tag} removed ${reaction.emoji.name} on message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
