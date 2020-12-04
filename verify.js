@@ -23,15 +23,23 @@ module.exports = (bot) => {
   const handleReaction = (reaction, user, add) => {
     if(user.id === '704022988722274304') return
     console.log("user is not a bot");
+    const emoji = reaction._emoji.name
+    console.log(emoji);
     const { guild } = reaction.message
+    const roleName = emojis[emoji]
+    console.log(roleName);
+    if (!roleName) {
+      return
+    }
+    const role = guild.roles.find((role) => `:${role.name}:` === roleName)
     const member = guild.members.cache.find((member) => member.id === user.id)
     if (add) {
-      console.log("Adds role");
-      member.roles.add( guild.roles.cache.get("706949672496922705") );
+      console.log(`Adding role: ${role}`);
+      member.roles.add(role)
       member.roles.remove( guild.roles.cache.get("781565994128113694") );
     } else {
-      console.log("removes role");
-      member.roles.remove( guild.roles.cache.get("706949672496922705") );
+      console.log(`Removing role: ${role}`);
+      member.roles.remove(role)
       member.roles.add( guild.roles.cache.get("781565994128113694") );
     }
   }
@@ -40,15 +48,17 @@ module.exports = (bot) => {
     if (reaction.message.channel.id === channelId) {
       console.log("match! Adds role");
       handleReaction(reaction, user, true)
+    } else {
+      console.log("mismatch: does nothing");
     }
-    console.log("mismatch: does nothing");
   })
 
   bot.on('messageReactionRemove', (reaction, user) => {
     if (reaction.message.channel.id === channelId) {
       console.log("match! removes role");
       handleReaction(reaction, user, false)
+    } else {
+      console.log("mismatch: does nothing");
     }
-    console.log("mismatch: does nothing");
   })
 }
