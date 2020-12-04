@@ -33,16 +33,17 @@ module.exports = (bot) => {
     if (!roleName) {
       return
     }
-    const role = guild.roles.find((role) => `:${role.name}:` === roleName)
+    const role = guild.roles.find((role) => `${role.name}` === roleName)
+    const role2 = guild.roles.find((role) => `Stardust` === roleName)
     const member = guild.members.cache.find((member) => member.id === user.id)
     if (add) {
       console.log(`Adding role: ${role}`);
       member.roles.cache.add(role)
-      member.roles.cache.remove( guild.roles.cache.get("781565994128113694") );
+      member.roles.cache.remove(role2);
     } else {
       console.log(`Removing role: ${role}`);
       member.roles.cache.remove(role)
-      member.roles.cache.add( guild.roles.cache.get("781565994128113694") );
+      member.roles.cache.add(role2);
     }
   }
 
