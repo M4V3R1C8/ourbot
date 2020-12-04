@@ -17,7 +17,7 @@ module.exports = (bot, reaction, user, add) => {
   const emoji = reaction._emoji.name
   const roleName = emojis[emoji]
   const role = reaction.message.guild.roles.cache.find((role) => `${role.name}` === roleName)
-  const member = reaction.message.members.cache.find((member) => member.id === user.id)
+  const member = reaction.message.guild.members.cache.find((member) => member.id === user.id)
   if (!roleName) return
   
   if(reaction.message.channel.id === channelId) {
