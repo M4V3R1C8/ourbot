@@ -41,11 +41,11 @@ module.exports = (bot) => {
     }
   }
 
-  bot.on('messageReactionAdd', (reaction, user) => {
+  channelMessages.on('messageReactionAdd', (reaction, user) => {
     console.log(`${user.tag} added ${reaction.emoji.name} to message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
     //handleReaction(reaction, user, true) 
   })
-  bot.on('messageReactionRemove', (reaction, user) => { 
+  channelMessages.on('messageReactionRemove', (reaction, user) => { 
     console.log(`${user.tag} removed ${reaction.emoji.name} on message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
     //handleReaction(reaction, user, false) 
   })
