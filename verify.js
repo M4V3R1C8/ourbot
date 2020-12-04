@@ -37,7 +37,7 @@ module.exports = (bot) => {
   }
 
   bot.on('messageReactionAdd', (reaction, user) => {
-    if (guild.channel.id === channelId) {
+    if (reaction.message.channel.id === channelId) {
       console.log("match! Adds role");
       handleReaction(reaction, user, true)
     }
@@ -45,7 +45,7 @@ module.exports = (bot) => {
   })
 
   bot.on('messageReactionRemove', (reaction, user) => {
-    if (guild.channel.id === channelId) {
+    if (reaction.message.channel.id === channelId) {
       console.log("match! removes role");
       handleReaction(reaction, user, false)
     }
