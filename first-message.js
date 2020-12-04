@@ -1,5 +1,4 @@
 const addReactions = (message, reactions) => {
-  console.log(reactions[0])
   var reacting = reactions[0]
   if (reacting.includes(">")) {
     reacting = reacting.substring(0, -1);
