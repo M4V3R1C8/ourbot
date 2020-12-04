@@ -2,6 +2,7 @@ const firstMessage = require('./first-message')
 
 module.exports = (bot) => {
   const channelId = '724433408293601429'
+  const msgId = '784229593657114624'
 
   const emojis = {
     '✅': 'Abnormalities'
@@ -16,7 +17,7 @@ module.exports = (bot) => {
   }
 
   firstMessage(bot, channelId, emojiText, reactions)
-  channel.messages.cache.get(channelId);
+  let channelMessages = bot.channels.cache.get(channelId).messages.fetch(msgId);
 
   const handleReaction = (reaction, user, add) => {
     if(reaction.message.channel.id === channelId) {
