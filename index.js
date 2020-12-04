@@ -30,7 +30,7 @@ bot.on( 'message', ( message ) => {
 } );
 
 bot.on('messageReactionAdd', (reaction, users) => {
-  console.log(`${user.tag} added ${reaction.emoji.name} to message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
+  console.log(`added ${reaction.emoji.name} to message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
   handleReaction(bot, reaction, users, true) 
 })
 bot.on( 'messageReactionRemove', (reaction, user) => { 
