@@ -3,8 +3,9 @@ const fs = require( "fs" );
 const config = require( './config.json' );
 const roleClaim = require( './role-claim.js' );
 const verify = require( './verify.js' );
+const handleReaction = require( './handle-reaction.js' )
 const prefix = config.prefix;
-const bot = new Discord.Client( { partials: ["MESSAGE", "CHANNEL", "REACTION"] } );
+const bot = new Discord.Client();
 bot.prefix = prefix;
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
@@ -27,6 +28,15 @@ bot.on( 'guildMemberAdd', ( guildMember ) => {
 bot.on( 'message', ( message ) => {
   require( './events/guild/message' )( bot, message );
 } );
+
+bot.on('messageReactionAdd', (reaction, user) => {
+  console.log(`${user.tag} added ${reaction.emoji.name} to message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
+  handleReaction(bot, reaction, user, true) 
+})
+bot.on('messageReactionRemove', (reaction, user) => { 
+  console.log(`${user.tag} removed ${reaction.emoji.name} on message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
+  handleReaction(bot, reaction, user, false) 
+})
 
 bot.login( process.env.token );//process.env.token );
 
