@@ -3,15 +3,13 @@ const firstMessage = require('./first-message')
 module.exports = (bot) => {
   const channelId = '724433408293601429'
 
-  const getEmoji = (emojiName) => message.guild.emojis.cache.find(emoji => emoji.name === emojiName);
-
   const emojis = {
     '✅': 'Abnormalities'
   }
 
   const reactions = []
 
-  let emojiText = '\n**Please click the :white_check_mark: below to agree to the rules above and to gain access to the rest of this server:**\n\n'
+  let emojiText = '\n**Click the :white_check_mark: below to gain access to the rest of this server:**\n\n'
   for (const key in emojis) {
     reactions.push(key)
     emojiText += ``
@@ -29,17 +27,16 @@ module.exports = (bot) => {
           return
         }
         const role = guild.roles.find((role) => `${role.name}` === roleName)
-        const role2 = guild.roles.find((role2) => `Stardust` === roleName)
-        console.log(role2);
         const member = guild.members.cache.find((member) => member.id === user.id)
+        console.log(`Role ID: ${role}, is being edited on Member ID: ${member}`); 
         if (add) {
-          console.log(`Adding role: ${role}, removing role: ${role2}`);
+          console.log(`Adding role: ${role}, removing role:`);
+          member.roles.add(role)
           member.roles.cache.add(role)
-          member.roles.cache.remove(role2);
         } else {
-          console.log(`Removing role: ${role}, adding role: ${role2}`);
+          console.log(`Removing role: ${role}`);
+          member.roles.remove(role)
           member.roles.cache.remove(role)
-          member.roles.cache.add(role2);
         }
       }
     }
