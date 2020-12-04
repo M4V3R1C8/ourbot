@@ -2,6 +2,7 @@ const firstMessage = require('./first-message')
 
 module.exports = (bot) => {
   const channelId = '724433408293601429'
+  const msgId = '784229593657114624'
 
   const emojis = {
     '✅': 'Abnormalities'
@@ -16,25 +17,23 @@ module.exports = (bot) => {
   }
 
   firstMessage(bot, channelId, emojiText, reactions)
+  bot.channels.cache.get(channelId).message.cache.get(msgId);
 
   const handleReaction = (reaction, user, add) => {
     if(reaction.message.channel.id === channelId) {
       if(user.id !== '704022988722274304') {
-        const { guild } = reaction.message
         const emoji = reaction._emoji.name
         const roleName = emojis[emoji]
-        if (!roleName) {
-          return
-        }
-        const role = guild.roles.find((role) => `${role.name}` === roleName)
-        const member = guild.members.cache.find((member) => member.id === user.id)
+        if (!roleName) return
+        const member = reaction.message.members.cache.find((member) => member.id === user.id)
+        const role = reaction.message.roles.find((role) => `${role.name}` === roleName)
         console.log(`Role ID: ${role}, is being edited on Member ID: ${member}`); 
         if (add) {
-          console.log(`Adding role: ${role}, removing role:`);
+          member.addRole(role)
           member.roles.add(role)
           member.roles.cache.add(role)
         } else {
-          console.log(`Removing role: ${role}`);
+          member.removeRole(role)
           member.roles.remove(role)
           member.roles.cache.remove(role)
         }
@@ -43,11 +42,11 @@ module.exports = (bot) => {
   }
 
   bot.on('messageReactionAdd', (reaction, user) => {
-    console.log(`messageReactionAdded`); 
+    console.log(`${user.tag} added ${reaction.emoji.name} to message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
     //handleReaction(reaction, user, true) 
   })
   bot.on('messageReactionRemove', (reaction, user) => { 
-    console.log(`messageReactionRemoved`);
+    console.log(`${user.tag} removed ${reaction.emoji.name} on message ${reaction.message.id} in channel ${reaction.message.channel.id}.`);
     //handleReaction(reaction, user, false) 
   })
 }
