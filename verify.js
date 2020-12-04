@@ -44,10 +44,10 @@ module.exports = (bot) => {
 
   bot.on('messageReactionAdd', (reaction, user) => {
     console.log(`messageReactionAdded`); 
-    handleReaction(reaction, user, true) 
+    //handleReaction(reaction, user, true) 
   })
   bot.on('messageReactionRemove', (reaction, user) => { 
     console.log(`messageReactionRemoved`);
-    handleReaction(reaction, user, false) 
+    //handleReaction(reaction, user, false) 
   })
 }
