@@ -16,7 +16,7 @@ bot.categories = fs.readdirSync( "./commands/" );
 
 bot.on( 'ready', () => {
   require( './events/client/ready' )( bot );
-  roleClaim(bot);
+  //roleClaim(bot);
   verify(bot);
 } );
 
