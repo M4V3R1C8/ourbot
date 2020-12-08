@@ -24,13 +24,13 @@ module.exports=(bot,db)=>{
 async function clock (clockID, timezone) {
   const timeNow = moment().tz(timezone).format('hh:mm A (z)');
   const clockChannel = bot.channels.cache.get(`${clockID}`);
-
   clockChannel.setName(`${timeNow}`).catch(console.error);
-  setInterval( () => {
+  interval(clockChannel);
+  async function interval (clockChannel) {
     const timeNowUpdate = moment().tz(timezone).format('hh:mm A (z)');
-    console.log(timeNowUpdate);
     clockChannel.setName(`${timeNowUpdate}`).catch(console.error);
-  }, 60000);
+    setInterval( interval(clockChannel), 60000);
+  }
 }
 async function members(memCountID, guildMemberCount) {
   const memChannelID = bot.channels.cache.get(memCountID);
