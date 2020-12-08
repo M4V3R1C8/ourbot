@@ -21,15 +21,17 @@ module.exports=(bot,db)=>{
 }
 
 async function clock (clockID, timezone) {
-  const timeNow = moment(new Date().getTime()).tz(timezone).format('hh:mm A (z)');
+  const timeNow = moment().tz(timezone).format('hh:mm A (z)');
   const clockChannel = bot.channels.cache.get(clockID);
+  var count = 0;
 
   clockChannel.edit({ name: `${timeNow}` }, 'Clock update').catch(console.error);
   setInterval( () => {
-    const timeNowUpdate = moment(new Date().getTime()).tz(timezone).format('hh:mm A (z)');
+    const timeNowUpdate = moment().add(count, 'minutes').tz(timezone).format('hh:mm A (z)');
     console.log(timeNowUpdate);
     clockChannel.edit({ name: `${timeNowUpdate}` }, 'Clock update')
       .catch(console.error);
+    count++;
   }, 60000);
 }
 async function members(memCountID, guildMemberCount) {
