@@ -1,6 +1,5 @@
 const { MessageEmbed } = require( "discord.js" );
-const moment = require('moment');
-const tz = require('moment-timezone');
+const moment = require('moment-timezone');
 module.exports = {
   name: "setclock",
   aliases: [ "" ],
@@ -20,12 +19,15 @@ module.exports = {
       }).then( async () => {
         const timeNow = moment().tz(timezone).format('hh:mm A (z)');
         const clockChannel = bot.channels.cache.get(clockID);
-
+        var count = 0;
+      
         clockChannel.edit({ name: `${timeNow}` }, 'Clock update').catch(console.error);
         setInterval( () => {
-          const timeNowUpdate = moment().tz(timezone).format('hh:mm A (z)');
+          const timeNowUpdate = moment().add(count, 'minutes').tz(timezone).format('hh:mm A (z)');
+          console.log(timeNowUpdate);
           clockChannel.edit({ name: `${timeNowUpdate}` }, 'Clock update')
             .catch(console.error);
+          count++;
         }, 60000);
       });
     });
