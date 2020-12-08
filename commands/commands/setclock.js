@@ -17,7 +17,7 @@ module.exports = {
         'clockID' : clockID,
         'timezone' : timezone
       }).then( async () => {
-        let interval = setInterval( clock(bot, clockID, timezone), 60000);
+        setInterval(() => { clock(bot, clockID, timezone) }, 60000);
       });
     });
   }

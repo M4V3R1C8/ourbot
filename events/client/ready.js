@@ -13,7 +13,7 @@ module.exports=(bot,db)=>{
       guildMemberCount = q.data().guildMemberCount;
     });
     if ( clockID !== null ) {
-      let interval = setInterval( clock(bot, clockID, timezone), 60000);
+      setInterval(() => { clock(bot, clockID, timezone) }, 60000);
     }
     if ( memCountID !== null ) {
       members(memCountID, guildMemberCount);
