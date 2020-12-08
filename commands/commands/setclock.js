@@ -16,9 +16,8 @@ module.exports = {
       db.collection('guilds').doc(message.guild.id).update({
         'clockID' : clockID,
         'timezone' : timezone
-      }).then( async () => {
-        setInterval(() => { clock(bot, clockID, timezone) }, 60000);
-      });
+      })
+      setInterval(() => { clock(bot, clockID, timezone) }, 60000);
     });
   }
 }
