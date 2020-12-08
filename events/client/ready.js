@@ -23,10 +23,10 @@ module.exports=(bot,db)=>{
 
 async function clock (clockID, timezone) {
   const timeNow = moment().tz(timezone).format('hh:mm A (z)');
-  const clockChannel = bot.guild.channels.cache.get(clockID);
+  const clockChannel = bot.channels.cache.get(`${clockID}`);
 
   clockChannel.setName(`${timeNow}`).catch(console.error);
-  var timer = setInterval( () => {
+  setInterval( () => {
     const timeNowUpdate = moment().tz(timezone).format('hh:mm A (z)');
     console.log(timeNowUpdate);
     clockChannel.setName(`${timeNowUpdate}`).catch(console.error);
