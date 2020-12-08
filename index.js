@@ -1,6 +1,5 @@
 const Discord = require( "discord.js" );
 const fs = require( "fs" );
-require('dotenv/config');
 
 //initialize bot
 const bot = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
