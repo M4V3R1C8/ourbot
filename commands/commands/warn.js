@@ -6,7 +6,7 @@ module.exports = {
   name: "warn",
   aliases: [ "warn, warning, warns" ],
   description: "Written warning log to users that violate clan rules. Admin Only",
-  usage: "<user id> <reason>",
+  usage: "+/- <user id> <reason>",
   run: async ( bot, message, args ) => {
     let warns = JSON.parse( fs.readFileSync( "./warnings.json" ) );
     if ( !message.member.hasPermission( "MANAGE_MEMBERS" ) ) message.reply( "This toy is no made for You!" );

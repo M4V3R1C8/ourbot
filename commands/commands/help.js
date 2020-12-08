@@ -1,7 +1,5 @@
 const { MessageEmbed } = require( "discord.js" );
 const { stripIndents } = require( "common-tags" );
-const config = require( '../../config.json' );
-const prefix = config.prefix;
 const ms = require( 'ms' );
 module.exports = {
   name: "help",
@@ -34,23 +32,29 @@ function getAll ( bot, message ) {
 }
 
 function getCMD ( bot, message, input ) {
-  const embed = new MessageEmbed();
+  db.collection('guilds').doc(message.guild.id).get().then((q) => {
+    if(q.exists) {
+      prefix = q.data().prefix;
+    }
+  }).then( async () => {
+    const embed = new MessageEmbed();
 
-  const cmd = bot.commands.get( input.toLowerCase() ) || bot.commands.get( bot.aliases.get( input.toLowerCase() ) );
-
-  let info = `No information found for command **${ input.toLowerCase() }**`;
-
-  if ( !cmd ) {
-    return message.channel.send( embed.setColor( "0x46789d" ).setDescription( info ) );
-  }
-
-  if ( cmd.name ) info = `**Name**: ${ cmd.name }`;
-  if ( cmd.aliases ) info += `\n**Aliases**: ${ cmd.aliases.map( a => `\`${ a }\`` ).join( ", " ) }`;
-  if ( cmd.description ) info += `\n**Description**: ${ cmd.description }`;
-  if ( cmd.timeout ) info += '\n**Timeout**: ' + ms( cmd.timeout );
-  if ( cmd.usage ) {
-    info += `\n**Usage**: ${ prefix }${ cmd.name } ${ cmd.usage }`;
-    embed.setFooter( `Syntax: <> = required, [] = optional` );
-  }
-  return message.channel.send( embed.setColor( "RANDOM" ).setDescription( info ) );
+    const cmd = bot.commands.get( input.toLowerCase() ) || bot.commands.get( bot.aliases.get( input.toLowerCase() ) );
+  
+    let info = `No information found for command **${ input.toLowerCase() }**`;
+  
+    if ( !cmd ) {
+      return message.channel.send( embed.setColor( "0x46789d" ).setDescription( info ) );
+    }
+  
+    if ( cmd.name ) info = `**Name**: ${ cmd.name }`;
+    if ( cmd.aliases ) info += `\n**Aliases**: ${ cmd.aliases.map( a => `\`${ a }\`` ).join( ", " ) }`;
+    if ( cmd.description ) info += `\n**Description**: ${ cmd.description }`;
+    if ( cmd.timeout ) info += '\n**Timeout**: ' + ms( cmd.timeout );
+    if ( cmd.usage ) {
+      info += `\n**Usage**: ${ prefix }${ cmd.name } ${ cmd.usage }`;
+      embed.setFooter( `Syntax: <> = required, [] = optional` );
+    }
+    return message.channel.send( embed.setColor( "RANDOM" ).setDescription( info ) );
+  });
 }
