@@ -19,13 +19,13 @@ module.exports = {
       }).then( async () => {
         const timeNow = moment().tz(timezone).format('hh:mm A (z)');
         const clockChannel = bot.channels.cache.get(`${clockID}`);
-      
         clockChannel.setName(`${timeNow}`).catch(console.error);
-        setInterval( () => {
+        interval(clockChannel);
+        async function interval (clockChannel) {
           const timeNowUpdate = moment().tz(timezone).format('hh:mm A (z)');
-          console.log(timeNowUpdate);
           clockChannel.setName(`${timeNowUpdate}`).catch(console.error);
-        }, 60000);
+          setInterval( interval(clockChannel), 60000);
+        }
       });
     });
   }
