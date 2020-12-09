@@ -12,7 +12,8 @@
     "firebase-admin": "^9.4.1",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
-    "ms": "^2.1.2"
+    "ms": "^2.1.2",
+    "ytdl-core-discord": "^1.2.4"
   },
   "devDependencies": {},
   "scripts": {
