@@ -1,4 +1,3 @@
-const { create } = require( 'discord.js/src/structures/APIMessage' );
 const moment = require('moment');
 const tz = require('moment-timezone');
 module.exports = {
