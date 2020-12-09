@@ -1,29 +1,19 @@
+const { create } = require( 'discord.js/src/structures/APIMessage' );
 const moment = require('moment');
 const tz = require('moment-timezone');
 module.exports = {
   name: "setclock",
   aliases: [ "" ],
   description: "Setup a server clock for your discord.",
-  usage: "<# tz database name>",
+  usage: "TZ database name from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones",
   run: async ( bot, message, args, db ) => {
-    db.collection('guilds').doc(message.guild.id).get().then((q) => {
-      if(q.exists) {
-        prefix = q.data().prefix;
-      }
-    }).then( async () => {
-      let clockID = args[0];
-      let timezone = args[1];
+    if(args[0]){
+      var timezone = args[0];
       db.collection('guilds').doc(message.guild.id).update({
-        'clockID' : clockID,
-        'timezone' : timezone
-      })
-      setInterval(() => { clock(bot, clockID, timezone) }, 60000);
-    });
+        'timezone' : timezone,
+      });
+    }
+    var id = message.guild.id;
+    require( '../../handlers/clock' )(bot,db,id,60000);
   }
-}
-
-async function clock (bot, clockID, timezone) {
-  const timeNow = moment().tz(timezone).format('hh:mm A (z)');
-  const clockChannel = bot.channels.cache.get(clockID);
-  clockChannel.edit({ name: `${timeNow}` }, 'Clock update').catch(console.error);
 }

@@ -5,7 +5,7 @@ module.exports=(bot,db)=>{
     let clockID = null, 
         timezone = "",
         memCountID = null, 
-        memberCount = 1;
+        guildMemberCount = 1;
     db.collection('guilds').doc(g.id).get().then((q) => {
       clockID = q.data().clockID;
       timezone = q.data().timezone;
@@ -13,18 +13,13 @@ module.exports=(bot,db)=>{
       guildMemberCount = q.data().guildMemberCount;
     });
     if ( clockID !== null ) {
-      setInterval(() => { clock(bot, clockID, timezone) }, 60000);
+      var id = bot.channels.cache.get(clockID).guild.id;
+      require( '../../handlers/clock' )(bot,db,id,60000);
     }
     if ( memCountID !== null ) {
       members(memCountID, guildMemberCount);
     }
   });
-}
-
-async function clock (bot, clockID, timezone) {
-  const timeNow = moment().tz(timezone).format('hh:mm A (z)');
-  const clockChannel = bot.channels.cache.get(clockID);
-  clockChannel.edit({ name: `${timeNow}` }, 'Clock update').catch(console.error);
 }
 
 async function members(memCountID, guildMemberCount) {
