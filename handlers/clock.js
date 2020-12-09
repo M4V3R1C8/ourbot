@@ -18,8 +18,9 @@ module.exports = (bot,db,id,i) => {
       if(timezone === undefined || timezone === '') {
         timezone = 'America/New_York';
       }
-      const timeNow = moment().tz(timezone).format('hh:mX A (z)');
+      const timeNow = moment().tz(timezone).format('hh:mm A (z)');
       const oldchannel = bot.channels.cache.get(clockID);
+      console.log(`renaming channel ${oldchannel} to ${timeNow}`)
       oldchannel.edit({ name: `${timeNow}` }, 'Clock update').catch(console.error);
 
       /*

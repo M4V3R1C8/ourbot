@@ -11,6 +11,6 @@ module.exports = {
       });
     }
     var id = message.guild.id;
-    require( '../../handlers/clock' )(bot,db,id,600000);
+    require( '../../handlers/clock' )(bot,db,id,300000);
   }
 }

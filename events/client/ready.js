@@ -12,7 +12,7 @@ module.exports=(bot,db)=>{
     });
     if ( clockID !== null ) {
       var id = g.id;
-      require( '../../handlers/clock' )(bot,db,id,600000);
+      require( '../../handlers/clock' )(bot,db,id,300000);
     }
     if ( memCountID !== null ) {
       members(memCountID, guildMemberCount);
