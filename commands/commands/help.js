@@ -6,9 +6,9 @@ module.exports = {
   aliases: [ "h" ],
   description: "Returns all commands, or one specific command info",
   usage: "[command | alias]",
-  run: async ( bot, message, args ) => {
+  run: async ( bot, message, args, db ) => {
     if ( args[ 0 ] ) {
-      return getCMD( bot, message, args[ 0 ] );
+      return getCMD( bot, message, args[ 0 ], db );
     } else {
       return getAll( bot, message );
     }
@@ -31,7 +31,7 @@ function getAll ( bot, message ) {
   return message.channel.send( embed.setDescription( info ) );
 }
 
-function getCMD ( bot, message, input ) {
+function getCMD ( bot, message, input, db ) {
   db.collection('guilds').doc(message.guild.id).get().then((q) => {
     if(q.exists) {
       prefix = q.data().prefix;

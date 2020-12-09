@@ -12,7 +12,7 @@ module.exports = {
       })
       message.channel.send(`Custom command ${args[0]} has been removed.`);
     } else {
-      const firstElement = args.shift().toString();
+      const firstElement = args.shift().toString().toLowerCase();
       const secondElement = args.join(' ').toString();
       db.collection('guilds').doc(message.guild.id).collection('custom').doc('commands').update({
         [firstElement]: secondElement
