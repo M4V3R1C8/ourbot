@@ -18,7 +18,7 @@ module.exports = (bot,db,id,i) => {
       if(timezone === undefined || timezone === '') {
         timezone = 'America/New_York';
       }
-      const timeNow = moment().tz(timezone).format(format);
+      const timeNow = moment().tz(timezone).format('hh:mm A (z)');
       const clockChannel = client.channels.cache.get(clockID);
       clockChannel.edit({ name: `${timeNow}` }, 'Clock update').catch(console.error);
       /*setInterval(() => {
