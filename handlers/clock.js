@@ -1,3 +1,5 @@
+const moment = require('moment');
+const tz = require('moment-timezone');
 module.exports = (bot,db,id,i) => {
   let clockInterval = setInterval(() => {
     db.collection('guilds').doc(id).get().then((q) => {

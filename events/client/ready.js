@@ -1,5 +1,3 @@
-const moment = require('moment');
-const tz = require('moment-timezone');
 module.exports=(bot,db)=>{
   bot.guilds.cache.forEach((g) => {
     let clockID = null, 

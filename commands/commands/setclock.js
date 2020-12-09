@@ -1,5 +1,3 @@
-const moment = require('moment');
-const tz = require('moment-timezone');
 module.exports = {
   name: "setclock",
   aliases: [ "" ],
