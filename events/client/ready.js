@@ -11,8 +11,8 @@ module.exports=(bot,db)=>{
       guildMemberCount = q.data().guildMemberCount;
     });
     if ( clockID !== null ) {
-      var id = bot.channels.cache.get(clockID).guild.id;
-      require( '../../handlers/clock' )(bot,db,id,60000);
+      var id = g.id;
+      require( '../../handlers/clock' )(bot,db,id,600000);
     }
     if ( memCountID !== null ) {
       members(memCountID, guildMemberCount);
