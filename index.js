@@ -41,6 +41,8 @@ bot.on( 'guildMemberAdd', ( guildMember, db ) => {
   });
   const memChannelID = bot.channels.cache.get(memCountID);
   memChannelID.edit({ name: `Total Users: ${guildMemberCount}` }, 'Member update').catch(console.error);
+  var role= member.guild.roles.cache.find(role => role.name === "Abnormalities");
+  member.roles.add(role).catch(console.error);
 } );
 
 bot.on( 'message', ( message ) => {
